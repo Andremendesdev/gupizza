@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Inter", sans-serif;
+  --font-headline: "Montserrat", sans-serif;
+
+  --color-primary: #b91c1c;
+  --color-primary-container: #b91c1c;
+  --color-surface-tint: #991b1b;
+  --color-on-primary-container: #fffaf9;
+  --color-secondary: #765b00;
+  --color-secondary-container: #ffc703;
+  --color-on-secondary-container: #6e5400;
+  --color-background: #f9f9f9;
+  --color-on-background: #1a1c1c;
+  --color-surface: #f9f9f9;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f3f3;
+  --color-surface-container: #eeeeee;
+  --color-surface-container-high: #e8e8e8;
+  --color-surface-container-highest: #e2e2e2;
+  --color-on-surface: #1a1c1c;
+  --color-on-surface-variant: #5d3f3e;
+  --color-surface-variant: #e2e2e2;
+  --color-outline: #916e6d;
+  --color-outline-variant: #e6bdbb;
+  --color-surface-dim: #dadada;
+  --color-surface-bright: #f9f9f9;
+  --color-on-primary: #ffffff;
+  --color-on-secondary: #ffffff;
+  --color-secondary-fixed: #ffdf94;
+  --color-secondary-fixed-dim: #f5bf00;
+  --color-on-secondary-fixed-variant: #594400;
+  --color-tertiary-fixed: #e5e2e1;
+  --color-tertiary-fixed-dim: #c8c6c5;
+  --color-on-tertiary: #ffffff;
+  --color-on-primary-fixed: #410007;
+  --color-inverse-surface: #2f3131;
+  --color-on-secondary-fixed: #251a00;
+  --color-inverse-primary: #ffb3b1;
+  --color-on-error: #ffffff;
+  --color-inverse-on-surface: #f1f1f1;
+  --color-on-tertiary-fixed: #1c1b1b;
+  --color-on-primary-fixed-variant: #92001d;
+  --color-tertiary-container: #747373;
+  --color-on-tertiary-container: #fdfaf9;
+  --color-tertiary: #5b5b5a;
+  --color-primary-fixed: #ffdad8;
+  --color-on-tertiary-fixed-variant: #474746;
+  --color-primary-fixed-dim: #ffb3b1;
+
+  --spacing-margin-mobile: 16px;
+  --spacing-margin-desktop: 40px;
+  --spacing-container-max: 1280px;
+  --spacing-gutter: 24px;
+}
+
+.shadow-soft {
+  box-shadow: 0px 4px 20px rgba(26, 28, 28, 0.05);
+}
+.shadow-floating {
+  box-shadow: 0px 8px 30px rgba(26, 28, 28, 0.1);
+}
+.shadow-premium {
+  box-shadow: 0px 12px 40px -8px rgba(0, 0, 0, 0.08), 0px 4px 12px -4px rgba(0, 0, 0, 0.04);
+}
+.shadow-glow {
+  box-shadow: 0px 8px 24px -6px rgba(185, 28, 28, 0.4);
+}
+.shadow-glow-hover:hover {
+  box-shadow: 0px 12px 32px -4px rgba(185, 28, 28, 0.5);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass {
+  background: rgba(26, 28, 28, 0.85);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+h1,
+h2,
+h3,
+h4,
+.font-headline {
+  font-family: var(--font-headline);
+}
+
+.text-neon-amber {
+  text-shadow:
+    0 0 8px rgba(251, 191, 36, 1),
+    0 0 16px rgba(251, 191, 36, 0.95),
+    0 0 32px rgba(245, 158, 11, 0.85),
+    0 0 52px rgba(245, 158, 11, 0.65),
+    0 0 80px rgba(217, 119, 6, 0.5),
+    0 0 100px rgba(217, 119, 6, 0.35);
+}
+
+.text-neon-amber:hover {
+  text-shadow:
+    0 0 10px rgba(251, 191, 36, 1),
+    0 0 20px rgba(251, 191, 36, 1),
+    0 0 40px rgba(245, 158, 11, 0.95),
+    0 0 64px rgba(245, 158, 11, 0.75),
+    0 0 96px rgba(217, 119, 6, 0.6),
+    0 0 120px rgba(217, 119, 6, 0.45);
+}
+
+.neon-red-button {
+  box-shadow:
+    0 0 8px rgba(185, 28, 28, 0.45),
+    0 0 16px rgba(185, 28, 28, 0.3),
+    0 0 24px rgba(185, 28, 28, 0.2);
+}
+
+.neon-red-button:hover {
+  box-shadow:
+    0 0 10px rgba(185, 28, 28, 0.55),
+    0 0 20px rgba(185, 28, 28, 0.4),
+    0 0 32px rgba(185, 28, 28, 0.25);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-up {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-left {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+.animate-scale-up {
+  animation: scale-up 0.25s ease-out;
+}
+
+.animate-slide-left {
+  animation: slide-left 0.3s ease-out;
+}
+
+@keyframes reviews-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.reviews-marquee-track {
+  animation: reviews-marquee 32s linear infinite;
+  width: max-content;
+}
+
+.reviews-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reviews-marquee-track {
+    animation: none;
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 0.5rem;
+  }
+}

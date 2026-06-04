@@ -1,0 +1,6 @@
+{
+  "name": "Pizzeria Moderno",
+  "description": "A melhor pizza da cidade na sua porta. Massa de fermentação natural e ingredientes frescos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
