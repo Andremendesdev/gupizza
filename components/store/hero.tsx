@@ -13,7 +13,7 @@ export function Hero({ onOrderNowClick }: HeroProps) {
   const opacityBg = useTransform(scrollY, [0, 400], [1, 0.6]);
 
   return (
-    <section className="relative w-full min-h-[92vh] flex items-center justify-center overflow-hidden pt-24 pb-16">
+    <section className="relative w-full min-h-[92vh] flex items-center justify-center overflow-hidden pt-24 pb-8 md:pb-16">
       {/* Background */}
       <motion.div style={{ y: yBg, opacity: opacityBg }} className="absolute inset-0 z-0">
         <img
@@ -38,7 +38,7 @@ export function Hero({ onOrderNowClick }: HeroProps) {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_40%,_rgba(0,30,10,0.55)_100%)]" />
       </motion.div>
 
-      <div className="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div className="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 lg:gap-16 items-center">
 
         {/* Conteúdo esquerdo */}
         <div className="flex flex-col items-start text-white">
@@ -163,9 +163,9 @@ export function Hero({ onOrderNowClick }: HeroProps) {
           initial={{ opacity: 0, scale: 0.82, rotate: -8 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ duration: 0.9, delay: 0.15, type: "spring", bounce: 0.35 }}
-          className="relative hidden md:flex justify-center items-center h-full pt-6 pb-6"
+          className="relative flex justify-center items-center w-full pt-4 pb-0 mt-4 md:mt-0 md:pt-6 md:pb-6"
         >
-          <div className="relative w-full max-w-[500px] lg:max-w-[540px] aspect-square flex items-center justify-center">
+          <div className="relative w-full max-w-[340px] sm:max-w-[340px] md:max-w-[500px] lg:max-w-[540px] mx-auto aspect-square flex items-center justify-center">
 
             {/* Glow duplo atrás da pizza */}
             <div className="absolute inset-[10%] bg-amber-400/18 rounded-full blur-[70px]" />
@@ -188,7 +188,7 @@ export function Hero({ onOrderNowClick }: HeroProps) {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -left-4 lg:-left-8 top-20 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl z-20 flex items-center gap-3"
+              className="absolute left-0 sm:-left-4 lg:-left-8 top-8 sm:top-20 bg-white/95 backdrop-blur-md p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl z-20 flex items-center gap-2 sm:gap-3"
               style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.18)" }}
             >
               <span
@@ -198,8 +198,8 @@ export function Hero({ onOrderNowClick }: HeroProps) {
                 star
               </span>
               <div className="flex flex-col">
-                <span className="font-black text-lg text-on-surface leading-none">4.9/5</span>
-                <span className="text-[11px] text-on-surface-variant font-semibold mt-0.5">Avaliação App</span>
+                <span className="font-black text-base sm:text-lg text-on-surface leading-none">4.9/5</span>
+                <span className="text-[10px] sm:text-[11px] text-on-surface-variant font-semibold mt-0.5">Avaliação App</span>
               </div>
             </motion.div>
 
@@ -207,15 +207,15 @@ export function Hero({ onOrderNowClick }: HeroProps) {
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-              className="absolute -right-2 lg:-right-6 bottom-24 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl z-20 flex items-center gap-3"
+              className="absolute right-0 sm:-right-2 lg:-right-6 bottom-12 sm:bottom-24 bg-white/95 backdrop-blur-md p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl z-20 flex items-center gap-2 sm:gap-3"
               style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.18)" }}
             >
               <div className="bg-primary/10 p-2 rounded-xl">
                 <span className="material-symbols-outlined text-primary text-[24px]">local_shipping</span>
               </div>
               <div className="flex flex-col">
-                <span className="font-black text-lg text-on-surface leading-none">~30 min</span>
-                <span className="text-[11px] text-on-surface-variant font-semibold mt-0.5">Entrega Média</span>
+                <span className="font-black text-base sm:text-lg text-on-surface leading-none">~30 min</span>
+                <span className="text-[10px] sm:text-[11px] text-on-surface-variant font-semibold mt-0.5">Entrega Média</span>
               </div>
             </motion.div>
           </div>

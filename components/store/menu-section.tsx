@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import type { MenuItem } from "@/types";
+import { useState, useMemo, useCallback } from "react";
+import type { CartItem, MenuItem } from "@/types";
 import { motion, AnimatePresence } from "motion/react";
+
+type MenuCategory = MenuItem["category"];
 
 interface MenuSectionProps {
   menuItems: MenuItem[];
@@ -10,6 +12,7 @@ interface MenuSectionProps {
   favorites: string[];
   onToggleFavorite: (id: string) => void;
   cartMenuIds?: string[];
+  onAddComboToCart?: (items: CartItem[]) => void;
 }
 
 export function MenuSection({
@@ -18,16 +21,105 @@ export function MenuSection({
   favorites,
   onToggleFavorite,
   cartMenuIds = [],
+  onAddComboToCart,
 }: MenuSectionProps) {
-  const [selectedCategory, setSelectedCategory] = useState<"Clássicas" | "Especiais" | "Doces" | "Bebidas">("Clássicas");
+  const [selectedCategory, setSelectedCategory] = useState<MenuCategory>("Promoção agora");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const categories: ("Clássicas" | "Especiais" | "Doces" | "Bebidas")[] = [
+  const categories: MenuCategory[] = [
+    "Promoção agora",
     "Clássicas",
     "Especiais",
     "Doces",
     "Bebidas",
   ];
+
+  const isPromoCategory = selectedCategory === "Promoção agora";
+
+  const handlePromoCombo = useCallback(
+    (comboId: "promo-combo-casal" | "promo-combo-familia") => {
+      if (!onAddComboToCart) return;
+
+      const margherita = menuItems.find((m) => m.id === "margherita-especial");
+      const pepper = menuItems.find((m) => m.id === "pepperoni-premium");
+      const refri = menuItems.find((m) => m.id === "refrigerante-lata");
+
+      if (comboId === "promo-combo-casal" && margherita && refri) {
+        onAddComboToCart([
+          {
+            id: `combo-casal-pizz-${Date.now()}`,
+            menuItem: margherita,
+            quantity: 1,
+            selectedSize: "Grande",
+            selectedBorder: "Sem Borda",
+            extraIngredients: [],
+            totalPrice: margherita.price,
+          },
+          {
+            id: `combo-casal-ref-${Date.now()}`,
+            menuItem: refri,
+            quantity: 1,
+            selectedSize: "Grande",
+            selectedBorder: "Sem Borda",
+            extraIngredients: [],
+            totalPrice: refri.price,
+          },
+        ]);
+        return;
+      }
+
+      if (comboId === "promo-combo-familia" && margherita && pepper && refri) {
+        onAddComboToCart([
+          {
+            id: `combo-fam-pizz1-${Date.now()}`,
+            menuItem: margherita,
+            quantity: 1,
+            selectedSize: "Grande",
+            selectedBorder: "Borda de Catupiry",
+            extraIngredients: [],
+            totalPrice: margherita.price + 8,
+          },
+          {
+            id: `combo-fam-pizz2-${Date.now()}`,
+            menuItem: pepper,
+            quantity: 1,
+            selectedSize: "Grande",
+            selectedBorder: "Sem Borda",
+            extraIngredients: [],
+            totalPrice: pepper.price,
+          },
+          {
+            id: `combo-fam-ref-${Date.now()}`,
+            menuItem: refri,
+            quantity: 2,
+            selectedSize: "Grande",
+            selectedBorder: "Sem Borda",
+            extraIngredients: [],
+            totalPrice: refri.price * 2,
+          },
+        ]);
+      }
+    },
+    [menuItems, onAddComboToCart],
+  );
+
+  const handleItemAdd = useCallback(
+    (item: MenuItem) => {
+      if (item.id === "promo-combo-casal" || item.id === "promo-combo-familia") {
+        handlePromoCombo(item.id);
+        return;
+      }
+      if (item.id === "promo-calabresa") {
+        const calabresa = menuItems.find((m) => m.id === "calabresa-gourmet");
+        if (calabresa) {
+          onAddClick(calabresa);
+          return;
+        }
+      }
+      onAddClick(item);
+    },
+    [handlePromoCombo, menuItems, onAddClick],
+  );
 
   // Filtering based on search query and category pill
   const filteredItems = useMemo(() => {
@@ -84,20 +176,27 @@ export function MenuSection({
       <div className="flex gap-4 overflow-x-auto pb-4 mb-8 scrollbar-hide" id="category-selector">
         {categories.map((category) => {
           const isSelected = selectedCategory === category;
+          const isPromoPill = category === "Promoção agora";
           return (
             <button
               key={category}
               type="button"
-              onClick={() => {
-                setSelectedCategory(category);
-                // We keep some items even on empty search
-              }}
-              className={`px-6 py-2.5 rounded-full font-label-md text-label-md whitespace-nowrap transition-all duration-200 cursor-pointer ${
+              onClick={() => setSelectedCategory(category)}
+              className={`px-6 py-2.5 rounded-full font-label-md text-label-md whitespace-nowrap transition-all duration-200 cursor-pointer flex items-center gap-2 ${
                 isSelected
-                  ? "bg-primary text-on-primary shadow-md font-bold"
-                  : "bg-surface-container text-on-surface hover:bg-surface-variant"
+                  ? isPromoPill
+                    ? "bg-secondary-container text-on-secondary-container shadow-md font-bold"
+                    : "bg-primary text-on-primary shadow-md font-bold"
+                  : isPromoPill
+                    ? "bg-secondary-container/90 text-on-secondary-container hover:opacity-95 font-bold"
+                    : "bg-surface-container text-on-surface hover:bg-surface-variant"
               }`}
             >
+              {isPromoPill && (
+                <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  local_offer
+                </span>
+              )}
               {category}
             </button>
           );
@@ -109,6 +208,8 @@ export function MenuSection({
         <AnimatePresence mode="popLayout">
           {filteredItems.map((item) => {
             const isFav = favorites.includes(item.id);
+            const isPromoItem = item.category === "Promoção agora";
+            const isComboPromo = item.id.startsWith("promo-combo-");
             return (
               <motion.div
                 layout
@@ -130,8 +231,17 @@ export function MenuSection({
                     loading="lazy"
                   />
                   
+                  {isPromoItem && (
+                    <div className="absolute top-3 left-3 bg-secondary-container text-on-secondary-container px-3 py-1.5 rounded-xl font-bold text-[10px] uppercase tracking-wider shadow-sm flex items-center gap-1">
+                      <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+                        bolt
+                      </span>
+                      Promoção agora
+                    </div>
+                  )}
+
                   {/* Rating Tag */}
-                  {item.rating && (
+                  {item.rating && !isPromoItem && (
                     <div className="absolute top-3 left-3 bg-surface-container-lowest/90 glass text-on-surface px-3 py-1.5 rounded-xl font-bold text-xs shadow-sm flex items-center gap-1.5">
                       <span className="material-symbols-outlined text-[16px] text-secondary-container-dim" style={{ fontVariationSettings: "'FILL' 1" }}>
                         star
@@ -172,24 +282,31 @@ export function MenuSection({
                   </p>
 
                   <div className="flex items-center justify-between mt-auto pt-4 border-t border-surface-container-low">
-                    <span className="font-headline-md text-2xl font-black text-on-surface">
-                      R$ {item.price.toFixed(2).replace(".", ",")}
-                    </span>
+                    <div className="flex flex-col">
+                      {item.originalPrice != null && item.originalPrice > item.price && (
+                        <span className="text-xs text-on-surface-variant line-through font-medium">
+                          R$ {item.originalPrice.toFixed(2).replace(".", ",")}
+                        </span>
+                      )}
+                      <span className="font-headline-md text-2xl font-black text-primary">
+                        R$ {item.price.toFixed(2).replace(".", ",")}
+                      </span>
+                    </div>
 
-                    {/* Quick Add Button opens customization modal */}
                     <button
                       type="button"
-                      onClick={() => onAddClick(item)}
-                      className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors cursor-pointer ${
+                      onClick={() => handleItemAdd(item)}
+                      className={`${isComboPromo ? "px-4 h-12 rounded-xl" : "w-12 h-12 rounded-full"} flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
                         cartMenuIds.includes(item.id)
                           ? "bg-primary text-on-primary"
                           : "bg-primary/10 text-primary shadow-sm group-hover:bg-primary group-hover:text-on-primary"
                       }`}
-                      title="Adicionar / Customizar Pizza"
+                      title={isComboPromo ? "Adicionar combo" : "Adicionar / Customizar"}
                     >
-                      <span className="material-symbols-outlined">
-                        {cartMenuIds.includes(item.id) ? "shopping_cart" : "add"}
+                      <span className="material-symbols-outlined text-[20px]">
+                        {isComboPromo ? "add_shopping_cart" : cartMenuIds.includes(item.id) ? "shopping_cart" : "add"}
                       </span>
+                      {isComboPromo && <span className="text-xs font-bold hidden sm:inline">Combo</span>}
                     </button>
                   </div>
                 </div>

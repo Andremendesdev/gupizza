@@ -28,6 +28,7 @@ export function HomeContent({ menuItems }: HomeContentProps) {
         favorites={store.favorites}
         onToggleFavorite={store.handleToggleFavorite}
         cartMenuIds={store.cartMenuIds}
+        onAddComboToCart={store.handleAddComboToCart}
       />
 
       <OurSpace />

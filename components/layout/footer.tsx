@@ -38,18 +38,24 @@ export function Footer() {
           referrerPolicy="no-referrer-when-downgrade"
           allowFullScreen
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-green-900/80" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-green-900 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-green-900/85" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-green-900 via-primary/10 to-transparent" />
+        <div className="pointer-events-none absolute top-0 left-0 w-32 h-1 bg-primary/60" />
+        <div className="pointer-events-none absolute top-0 right-0 w-32 h-1 bg-primary/60" />
       </div>
 
       {/* Card sobrepondo o mapa */}
       <div className="relative z-10 -mt-24 sm:-mt-28 md:-mt-36 px-margin-mobile md:px-margin-desktop pb-10 md:pb-14 bg-green-900">
-        <div className="max-w-container-max mx-auto rounded-3xl border border-white/10 bg-green-900 shadow-floating p-6 md:p-10">
+        <div className="max-w-container-max mx-auto rounded-3xl border border-white/10 border-t-primary/50 bg-green-900 shadow-floating p-6 md:p-10 relative overflow-hidden">
+          <div className="absolute top-0 left-8 right-8 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent" />
+          <div className="absolute -top-px left-1/2 -translate-x-1/2 w-16 h-1 rounded-full bg-primary shadow-glow" />
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             <div className="flex flex-col gap-6">
               <div>
                 <span className="text-headline-sm font-headline-md text-amber-300 uppercase tracking-tight">
-                  Pizzaria & Esfirraria do Gu
+                  Pizzaria & Esfirraria do{" "}
+                  <span className="text-primary">Gu</span>
                 </span>
                 <p className="text-green-100 font-medium max-w-md leading-relaxed mt-3">
                   Pizzas e esfihas feitas na hora, com ingredientes de qualidade e sabor que conquista na
@@ -60,9 +66,9 @@ export function Footer() {
               <div className="space-y-3">
                 <a
                   href={PHONE_HREF}
-                  className="flex items-center gap-3 text-white hover:text-amber-300 transition-colors font-semibold w-fit"
+                  className="flex items-center gap-3 text-white hover:text-primary transition-colors font-semibold w-fit group"
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-amber-300">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
                     <span className="material-symbols-outlined text-[20px]">call</span>
                   </span>
                   {PHONE}
@@ -72,9 +78,9 @@ export function Footer() {
                   href={MAPS_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-3 text-green-100 hover:text-amber-300 transition-colors font-medium w-fit max-w-md"
+                  className="flex items-start gap-3 text-green-100 hover:text-primary transition-colors font-medium w-fit max-w-md group"
                 >
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-amber-300">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
                     <span className="material-symbols-outlined text-[20px]">location_on</span>
                   </span>
                   <span className="pt-2 leading-relaxed">{ADDRESS}</span>
@@ -84,7 +90,8 @@ export function Footer() {
 
             <div className="flex flex-col gap-6">
               <div>
-                <span className="font-label-sm text-label-sm text-white uppercase tracking-wider mb-3 block">
+                <span className="font-label-sm text-label-sm text-white uppercase tracking-wider mb-3 block flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                   Redes Sociais
                 </span>
                 <div className="flex flex-wrap gap-3">
@@ -94,7 +101,7 @@ export function Footer() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-green-100 hover:border-amber-400/50 hover:text-amber-300 hover:bg-white/10 transition-all font-semibold text-xs"
+                      className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-green-100 hover:border-primary/60 hover:text-primary hover:bg-primary/10 transition-all font-semibold text-xs"
                     >
                       <span className="material-symbols-outlined text-[18px]">{social.icon}</span>
                       {social.label}
@@ -103,23 +110,27 @@ export function Footer() {
                 </div>
               </div>
 
-              <nav className="flex flex-wrap gap-x-5 gap-y-2 pt-4 border-t border-white/10">
-                <Link href="/" className="text-green-100 hover:text-amber-300 transition-colors font-medium text-xs">
+              <nav className="flex flex-wrap gap-x-5 gap-y-2 pt-4 border-t border-primary/25">
+                <Link href="/" className="text-green-100 hover:text-primary transition-colors font-medium text-xs">
                   Menu
                 </Link>
-                <Link href="/deals" className="text-green-100 hover:text-amber-300 transition-colors font-medium text-xs">
+                <Link href="/deals" className="text-green-100 hover:text-primary transition-colors font-medium text-xs">
                   Promoções
                 </Link>
-                <Link href="/pedidos" className="text-green-100 hover:text-amber-300 transition-colors font-medium text-xs">
+                <Link href="/pedidos" className="text-green-100 hover:text-primary transition-colors font-medium text-xs">
                   Pedidos
                 </Link>
               </nav>
             </div>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-white/10 text-center">
-            <p className="text-green-200/80 font-medium text-xs">
-              © {new Date().getFullYear()} Pizzaria & Esfirraria do Gu • Todos os direitos reservados.
+          <div className="mt-8 pt-6 border-t border-primary/20 text-center">
+            <p className="text-green-200/80 font-medium text-xs flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+              <span>© {new Date().getFullYear()} Pizzaria & Esfirraria do Gu</span>
+              <span className="text-primary hidden sm:inline" aria-hidden>
+                •
+              </span>
+              <span>Todos os direitos reservados.</span>
             </p>
           </div>
         </div>

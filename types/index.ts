@@ -3,7 +3,8 @@ export interface MenuItem {
   name: string;
   description: string;
   price: number;
-  category: "Clássicas" | "Especiais" | "Doces" | "Bebidas";
+  category: "Clássicas" | "Especiais" | "Doces" | "Bebidas" | "Promoção agora";
+  originalPrice?: number;
   image: string;
   rating?: number;
   favorite?: boolean;

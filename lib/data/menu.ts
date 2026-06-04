@@ -152,6 +152,52 @@ export const menuItems: MenuItem[] = [
     ingredients: ["Integral 300ml"],
   },
   {
+    id: "promo-combo-casal",
+    name: "Combo Casal — Promoção Agora",
+    description:
+      "1 Pizza Margherita Especial Grande + 1 refrigerante lata gelado. Ideal para dois — preço especial por tempo limitado.",
+    price: 59.9,
+    originalPrice: 67.8,
+    category: "Promoção agora",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuC2sUO3kCkIM_nWraKnVYCrufYWwYF8rbQvmqeBvX48-9WdJqG_H9ibYTx7AurMmuCsrStAHdX-1yb40XBGG09_canN8nAO1ABI-4AVnHa7FqHp3vKh20i9ZC7WqYGohWclX2hZ-It8bRMJrJOQKitEGqRPfMevRM6JZgaj7zWXEUlM8YWA7_WYjgQSxUA7Le-DbsdFucys_kgckexZweS-VD6uL6kT4mdpLQUGSjXSEXFZobp6m29Q-RNHDrsGJeuKXYc1YHYEtF0",
+    rating: 5,
+    favorite: true,
+  },
+  {
+    id: "promo-combo-familia",
+    name: "Combo Família — Promoção Agora",
+    description:
+      "2 pizzas grandes (Margherita com borda de catupiry + Pepperoni) + 2 refrigerantes. Festa completa com desconto.",
+    price: 119.9,
+    originalPrice: 148.6,
+    category: "Promoção agora",
+    image:
+      "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&auto=format&fit=crop&q=60",
+    rating: 4.9,
+    favorite: true,
+  },
+  {
+    id: "promo-calabresa",
+    name: "Calabresa Gourmet em Promo",
+    description:
+      "Calabresa artesanal defumada com cebola roxa e azeitonas — oferta exclusiva da aba Promoção agora.",
+    price: 49.9,
+    originalPrice: 58.9,
+    category: "Promoção agora",
+    image:
+      "https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=500&auto=format&fit=crop&q=60",
+    rating: 4.8,
+    favorite: false,
+    ingredients: [
+      "Molho de Tomate",
+      "Mozzarella",
+      "Calabresa Defumada",
+      "Cebola Roxa",
+      "Azeitonas Pretas",
+    ],
+  },
+  {
     id: "cerveja-artesanal",
     name: "Cerveja Artesanal IPA",
     description:
