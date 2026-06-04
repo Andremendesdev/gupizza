@@ -76,6 +76,22 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
+
+.admin-glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 1px 2px rgba(26, 28, 28, 0.04),
+    0 8px 32px -8px rgba(26, 28, 28, 0.08);
+}
+
+.admin-panel {
+  background:
+    radial-gradient(ellipse 80% 50% at 100% 0%, rgba(185, 28, 28, 0.06), transparent),
+    radial-gradient(ellipse 60% 40% at 0% 100%, rgba(22, 101, 52, 0.05), transparent),
+    #eef0ee;
+}
 .dark .glass {
   background: rgba(26, 28, 28, 0.85);
 }
@@ -117,6 +133,22 @@ h4,
     0 0 64px rgba(245, 158, 11, 0.75),
     0 0 96px rgba(217, 119, 6, 0.6),
     0 0 120px rgba(217, 119, 6, 0.45);
+}
+
+.text-neon-primary {
+  text-shadow:
+    0 0 6px rgba(239, 68, 68, 0.45),
+    0 0 14px rgba(220, 38, 38, 0.35),
+    0 0 28px rgba(185, 28, 28, 0.25),
+    0 0 44px rgba(185, 28, 28, 0.15);
+}
+
+.text-neon-white {
+  text-shadow:
+    0 0 6px rgba(255, 255, 255, 0.4),
+    0 0 14px rgba(255, 255, 255, 0.28),
+    0 0 28px rgba(255, 255, 255, 0.18),
+    0 0 44px rgba(255, 255, 255, 0.1);
 }
 
 .neon-red-button {

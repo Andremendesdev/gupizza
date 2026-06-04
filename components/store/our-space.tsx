@@ -1,10 +1,6 @@
-const MAIN_IMAGE = "/teste1.png";
+const MAIN_IMAGE = "/img1.png";
 
-const GALLERY_IMAGES = [
-  "/teste2.png",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuCWu-ROQep0X5ccPPupzpDPv29uABw5ifnO2Su-mUZ5a1ug9J-wjEfkIC-BvIv-oksuFLNNgV8mwjqOT1CYiWbjjjaBHEyLTeCkf4Ch2MYDilcyNLDrdHidIXYyHH1mBShpeWlGFu7Qtr9byzQUdtjQBIZgXtiBbII2cg8C48gtUAi5b-b9Sn13T9Bub-FeCg_Lv3qXT2dhp44-yOLZhvtQlNUBqy-8SZqO8EV9ao1rWGqOtxSOqtApVv1Sax1eCa6P-aez2iHKkU8",
-  "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&auto=format&fit=crop&q=60",
-];
+const GALLERY_IMAGES = ["/teste1.png", "/img2.png", "/teste2.png"];
 
 type GalleryPhotoProps = {
   src: string;
